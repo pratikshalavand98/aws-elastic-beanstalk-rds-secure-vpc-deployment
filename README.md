@@ -146,5 +146,4 @@ Application successfully connected to backend database and displayed live data.
 Master of Computer Applications (MCA)  
 Savitribai Phule Pune University
 💡 Aspiring Cloud & DevOps Engineer
-```
 
