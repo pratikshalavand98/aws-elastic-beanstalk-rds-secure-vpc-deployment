@@ -1,15 +1,5 @@
 # 🚀 AWS Elastic Beanstalk & RDS: Secure Multi-Tier VPC Deployment
 
----
-
-## 👤 Author
-**Pratiksha Lavand**  
-Master of Computer Applications (MCA)  
-Savitribai Phule Pune University  
-Aspiring Cloud Architect | Cloud & DevOps Enthusiast  
-
----
-
 ## 📌 Project Overview
 
 This project demonstrates the deployment of a **highly available and secure multi-tier web application on AWS**.  
@@ -62,7 +52,20 @@ The application follows a standard **three-tier architecture**:
 
 ---
 
-### 📍 Phase 2: Compute & Storage Configuration
+### 📍 Phase 2: Manual EC2 Management Client Setup
+To securely manage the private RDS instance, I manually provisioned a standalone EC2 instance as a database client within the same Custom VPC.
+
+**Step-by-Step Launch Process:**
+1. **AMI Selection:** Chose **Amazon Linux 2023 AMI** with a **t3.micro** instance type.
+   ![AMI Selection](https://github.com/user-attachments/assets/INST_02_AMI_Selection.png)
+
+2. **Network Settings:** - Selected the project's **Custom VPC**.
+   - Assigned a **Public Subnet** and enabled **Auto-assign Public IP**.
+   - Created a dedicated Security Group for **SSH (Port 22)** access.
+   ![VPC Selection for EC2](https://github.com/user-attachments/assets/NW_01_VPC_Selection.png)
+
+---
+### 📍 Phase 3: Compute & Storage Configuration
 
 - Configured EC2 instances managed by Elastic Beanstalk  
 - Optimized storage using **gp3 volume type**
@@ -75,7 +78,7 @@ The application follows a standard **three-tier architecture**:
 
 ---
 
-### 📍 Phase 3: Secure Database Integration
+### 📍 Phase 4: Secure Database Integration
 
 - Provisioned **Amazon RDS (MySQL)** in private subnet  
 - Disabled public access for security  
@@ -89,7 +92,7 @@ The application follows a standard **three-tier architecture**:
 
 ---
 
-### 📍 Phase 4: Application Deployment
+### 📍 Phase 5: Application Deployment
 
 - Packaged Flask application  
 - Deployed via Elastic Beanstalk console  
@@ -156,3 +159,13 @@ This project successfully demonstrates a secure, scalable, and production-ready 
 # Install Python dependencies
 sudo yum install python3-pip -y
 pip3 install mysql-connector-python pymysql
+
+---
+
+## 👤 Author
+**Pratiksha Lavand**  
+Master of Computer Applications (MCA)  
+Savitribai Phule Pune University  
+Aspiring Cloud Architect | Cloud & DevOps Enthusiast  
+
+---
