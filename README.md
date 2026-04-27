@@ -1,129 +1,65 @@
 # 🚀 AWS Elastic Beanstalk & RDS: Secure Multi-Tier VPC Deployment
 
 ## 📌 Project Overview
-
-This project demonstrates the deployment of a **highly available and secure multi-tier web application on AWS**.  
-It uses:
-
-- AWS Elastic Beanstalk for managed application deployment  
-- Amazon RDS for a persistent relational database  
-- Custom VPC for network isolation and security  
+This project demonstrates the deployment of a **highly available and secure multi-tier web application on AWS**. It utilizes managed services within a custom network to ensure data isolation, high performance, and scalability.
 
 ### 🎯 Key Objectives
-
-- Provision a managed web environment using Elastic Beanstalk  
-- Integrate a private Amazon RDS database within the same VPC  
-- Implement secure communication using Security Group referencing  
-- Validate backend connectivity using an isolated EC2 management instance  
+- Provision a managed web environment using **AWS Elastic Beanstalk**.
+- Integrate a private **Amazon RDS (MySQL)** database within the same VPC.
+- Implement secure communication using **Security Group referencing**.
+- Validate backend connectivity using an isolated **EC2 management instance**.
 
 ---
 
 ## 🏗️ Architecture Diagram
-
 The application follows a standard **three-tier architecture**:
 
 ![Architecture Diagram](https://github.com/user-attachments/assets/7d14afda-b0a8-48c7-b1ba-f6fd1a51dc7f)
-
-### Architecture Layers:
-
-- **Public Tier:** Elastic Beanstalk EC2 instances (Web Server)  
-- **Private Tier:** Amazon RDS (Database - No public access)  
-- **Management Tier:** EC2 instance for administrative operations  
 
 ---
 
 ## ⚙️ Deployment & Configuration Steps
 
----
-
 ### 📍 Phase 1: Environment & Application Setup
-
-- Created Elastic Beanstalk application using **Python 3.11 platform**
-- Configured environment and deployment tier
-
-#### Environment Selection
-![Environment Tier](https://github.com/user-attachments/assets/582f07f4-1c53-4b79-a02c-93a833976d96)
-
-#### Networking & VPC Configuration
-![VPC Selection](https://github.com/user-attachments/assets/16f4159e-5bb2-442b-870b-010371c8d1d5)
-
-#### Deployment Health Status
-![EC2 Status](https://github.com/user-attachments/assets/3d9df3cc-ad80-459c-9927-bfe301b8ecf4)
-
----
+- Created Elastic Beanstalk application using the **Python 3.11 platform**.
+- **Environment Selection:** ![Environment Tier](https://github.com/user-attachments/assets/582f07f4-1c53-4b79-a02c-93a833976d96)
+- **VPC Configuration:** ![VPC Selection](https://github.com/user-attachments/assets/16f4159e-5bb2-442b-870b-010371c8d1d5)
 
 ### 📍 Phase 2: Manual EC2 Management Client Setup
-To securely manage the private RDS instance, I manually provisioned a standalone EC2 instance as a database client within the same Custom VPC.
+To manage the private RDS instance, I manually provisioned a standalone EC2 instance (`rds-client-ec2`) within the Custom VPC.
 
-**Step-by-Step Launch Process:**
-1. **AMI Selection:** Chose **Amazon Linux 2023 AMI** with a **t3.micro** instance type.
-  <img width="1919" height="859" alt="INST_02_AMI_Selection" src="https://github.com/user-attachments/assets/4833742a-47f9-42f1-b467-1f7f1b30813a" />
-
-
-2. **Network Settings:** - Selected the project's **Custom VPC**.
-   - Assigned a **Public Subnet** and enabled **Auto-assign Public IP**.
-   - Created a dedicated Security Group for **SSH (Port 22)** access.
-<img width="1919" height="859" alt="NW_01_VPC_Selection" src="https://github.com/user-attachments/assets/031e335b-b97c-401f-9584-9363424aa994" />
-
-
----
-### 📍 Phase 3: Compute & Storage Configuration
-
-- Configured EC2 instances managed by Elastic Beanstalk  
-- Optimized storage using **gp3 volume type**
-
-#### Security Group & Storage Configuration
-![Security Group](https://github.com/user-attachments/assets/43f7b039-73a1-4526-bcc3-1310c784aa54)
-
-#### SSH Access Verification (Management Instance)
-![SSH Access](https://github.com/user-attachments/assets/5aad6f96-d6e1-4152-a678-9bc60ec2d704)
+1. **Launch Instance:** Selected **Amazon Linux 2023 AMI** with **t3.micro**.
+   ![AMI Selection](https://github.com/user-attachments/assets/4833742a-47f9-42f1-b467-1f7f1b30813a)
+2. **Network Config:** Placed in the project VPC with a Public IP and SSH access.
+   ![VPC Selection for EC2](https://github.com/user-attachments/assets/031e335b-b97c-401f-9584-9363424aa994)
 
 ---
 
-### 📍 Phase 4: Secure Database Integration
+## 💻 Technical Implementation (SSH & Terminal Steps)
 
-- Provisioned **Amazon RDS (MySQL)** in private subnet  
-- Disabled public access for security  
-- Allowed access only via EC2 Security Group
+Ek baar instance launch hone ke baad, maine SSH ke zariye connect kiya aur ye commands follow kiye:
 
-#### RDS Connectivity Details
-![RDS Details](https://github.com/user-attachments/assets/434bcb9c-cd5d-4593-9b17-88cbee7b4f5c)
-
-#### Inbound Rule (Port 3306 MySQL)
-![RDS Inbound Rules](https://github.com/user-attachments/assets/da0178eb-8a32-43a4-8e30-f3a4fd600cc5)
-
----
-
-### 📍 Phase 5: Application Deployment
-
-- Packaged Flask application  
-- Deployed via Elastic Beanstalk console  
-
-#### Source Code Upload
-![Upload Code](https://github.com/user-attachments/assets/66f836be-d23e-4b62-b527-abf0fffe8608)
-
-#### EC2 Security Configuration
-![EC2 Security](https://github.com/user-attachments/assets/4c076ae0-b6d0-460c-8aec-9ae5639f4eca)
-
----
-
-## 💻 Technical Implementation (Terminal Steps)
-
-### 🖥️ Management EC2 Setup
-
+### 🖥️ 1. System & Dependencies Setup
 ```bash
-# Set hostname
+# Connecting to the instance and setting up the environment
 sudo hostnamectl set-hostname rds-client-ec2
 
-# Update system and install database client
+# Updating system and installing database client
 sudo dnf update -y
 sudo dnf install mariadb105-server -y
+sudo dnf install nmap-ncat -y
 
-🗄️ Database Setup (RDS MySQL)
+# Installing Python and required connectors
+sudo yum install python3-pip -y
+sudo yum install python3 -y
+pip3 install mysql-connector-python pymysql
+```
+🗄️ 2. Database Connectivity & Table Creation
+I connected to the private RDS endpoint to initialize the schema:
 -- Connect to RDS
 mysql -h <YOUR_RDS_ENDPOINT> -u admin -p
 
--- Create database and table
+-- Commands executed in RDS Terminal
 CREATE DATABASE ebdb;
 USE ebdb;
 
@@ -132,42 +68,27 @@ CREATE TABLE visits (
     msg VARCHAR(255)
 );
 
-INSERT INTO visits (msg)
-VALUES ('Hello from Elastic Beanstalk!');
-
+INSERT INTO visits (msg) VALUES ('Hello from Elastic Beanstalk!');
 SELECT * FROM visits;
 EXIT;
-```
-<img width="1919" height="973" alt="14_db_connection_success" src="https://github.com/user-attachments/assets/389bda6e-de88-466c-9e38-0f4c308c9e9f" />
+📍 Phase 3: Application Deployment
+Packaged the Flask application into a .zip bundle.
 
+Deployed via the Elastic Beanstalk console.
 📊 Final Status & Results
-EC2 Instances Status
-<img width="1919" height="869" alt="INF_02_Final_EC2_Instances_Status_Running" src="https://github.com/user-attachments/assets/bd6975e6-205b-43b8-b220-e6ce41aa2f95" />
-
-Deployment Health Logs
-🎉 Final Application Output
-<img width="1919" height="1016" alt="output" src="https://github.com/user-attachments/assets/092a80e0-83b1-4860-8705-7553b86d2d0c" />
+Infrastructure Health Status
+Verified EC2 Dashboard (All Instances Running)
+🎉 Final Live Application Output
 🛠️ Skills Demonstrated
-☁️ AWS Cloud Infrastructure (VPC, EC2, RDS)
-⚙️ Elastic Beanstalk Automation
-🔐 Security Groups & Network Isolation
-🗄️ MySQL Database Management (RDS)
-🐧 Linux System Administration
-🚀 CI/CD Deployment Concepts
+☁️ AWS Cloud Infrastructure: VPC, EC2, RDS (Private/Public Networking).
 
-🏁 Conclusion
+⚙️ Elastic Beanstalk Automation: Managed deployment and health monitoring.
 
-This project successfully demonstrates a secure, scalable, and production-ready AWS multi-tier architecture, combining compute, networking, and database services with strong security practices.
-# Install Python dependencies
-sudo yum install python3-pip -y
-pip3 install mysql-connector-python pymysql
+🔐 Security: Security Group Referencing & Network Isolation.
 
----
+🐧 Linux Administration: SSH, Package Management, and Bash Scripting.
 
-## 👤 Author
-**Pratiksha Lavand**  
-Master of Computer Applications (MCA)  
-Savitribai Phule Pune University  
-Aspiring Cloud Architect | Cloud & DevOps Enthusiast  
+👤 Author
+Pratiksha Lavand Master of Computer Applications (MCA) | Savitribai Phule Pune University
 
----
+Aspiring Cloud Architect | Cloud & DevOps Enthusiast
