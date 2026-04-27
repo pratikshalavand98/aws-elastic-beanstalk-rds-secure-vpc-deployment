@@ -130,17 +130,21 @@ RDS Database: Available & Connected
 
 Application successfully connected to backend database and displayed live data.
 
-🛠️ Skills Demonstrated
-☁️ AWS Cloud Infrastructure (VPC, EC2, RDS)
-⚙️ Elastic Beanstalk Deployment Automation
-🔐 Cloud Security (Security Groups & Private Subnets)
-🐧 Linux Administration (SSH, package management)
-🧠 Database Management (MySQL on RDS)
-🧩 Multi-tier Architecture Design
-👤 Author
+## 🛠️ Skills Demonstrated
 
-Pratiksha Lavand
-Master of Computer Applications (MCA)
+- ☁️ AWS Cloud Infrastructure (VPC, EC2, RDS)
+- ⚙️ Elastic Beanstalk Deployment Automation
+- 🔐 Cloud Security (Security Groups & Private Subnets)
+- 🐧 Linux Administration (SSH, package management)
+- 🧠 Database Management (MySQL on RDS)
+- 🧩 Multi-tier Architecture Design
+```
+
+## 👤 Author
+
+**Pratiksha Lavand**  
+Master of Computer Applications (MCA)  
 Savitribai Phule Pune University
-
 💡 Aspiring Cloud & DevOps Engineer
+```
+
