@@ -98,6 +98,7 @@ INSERT INTO visits (msg) VALUES ('Hello from Elastic Beanstalk!');
 SELECT * FROM visits;
 
 EXIT;
+```
 <img width="1919" height="973" alt="14_db_connection_success" src="https://github.com/user-attachments/assets/48050c94-bb41-4488-92b9-99efa4adabcb" />
 
 📍 Phase 3: Application Deployment
