@@ -132,6 +132,7 @@ VALUES ('Hello from Elastic Beanstalk!');
 
 SELECT * FROM visits;
 EXIT;
+```
 <img width="1919" height="973" alt="14_db_connection_success" src="https://github.com/user-attachments/assets/389bda6e-de88-466c-9e38-0f4c308c9e9f" />
 
 📊 Final Status & Results
