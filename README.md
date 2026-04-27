@@ -57,12 +57,14 @@ To securely manage the private RDS instance, I manually provisioned a standalone
 
 **Step-by-Step Launch Process:**
 1. **AMI Selection:** Chose **Amazon Linux 2023 AMI** with a **t3.micro** instance type.
-   ![AMI Selection](https://github.com/user-attachments/assets/INST_02_AMI_Selection.png)
+  <img width="1919" height="859" alt="INST_02_AMI_Selection" src="https://github.com/user-attachments/assets/4833742a-47f9-42f1-b467-1f7f1b30813a" />
+
 
 2. **Network Settings:** - Selected the project's **Custom VPC**.
    - Assigned a **Public Subnet** and enabled **Auto-assign Public IP**.
    - Created a dedicated Security Group for **SSH (Port 22)** access.
-   ![VPC Selection for EC2](https://github.com/user-attachments/assets/NW_01_VPC_Selection.png)
+<img width="1919" height="859" alt="NW_01_VPC_Selection" src="https://github.com/user-attachments/assets/031e335b-b97c-401f-9584-9363424aa994" />
+
 
 ---
 ### 📍 Phase 3: Compute & Storage Configuration
