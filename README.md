@@ -101,21 +101,31 @@ EXIT;
 ```
 <img width="1919" height="973" alt="14_db_connection_success" src="https://github.com/user-attachments/assets/48050c94-bb41-4488-92b9-99efa4adabcb" />
 
+
+
 📍 Phase 3: Application Deployment
 Packaged Flask application into .zip format
 Uploaded and deployed using AWS Elastic Beanstalk Console
 Verified successful deployment and health status
+
+
 <img width="1919" height="872" alt="DEP_03_Uploading_Application_Source_Code" src="https://github.com/user-attachments/assets/e3bddcba-bcfa-4858-bb86-d4a6106002ab" />
+
+
 
 📊 Final Results
 ✅ Infrastructure Status
 Elastic Beanstalk Environment: Healthy
+
 <img width="1919" height="868" alt="15_final_health_ok" src="https://github.com/user-attachments/assets/31637cb1-2125-4ca9-9c47-3f6cadd06030" />
 
 EC2 Instance: Running
+
 <img width="1919" height="869" alt="INF_02_Final_EC2_Instances_Status_Running" src="https://github.com/user-attachments/assets/41f1cdff-0654-47c0-9882-de97e8bf5fc0" />
 RDS Database: Available & Connected
+
 🎉 Final Output
+
 <img width="1919" height="1016" alt="output" src="https://github.com/user-attachments/assets/391f64af-7135-4fdd-927d-c0c30114e086" />
 
 Application successfully connected to backend database and displayed live data.
