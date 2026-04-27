@@ -138,7 +138,7 @@ Application successfully connected to backend database and displayed live data.
 - 🐧 Linux Administration (SSH, package management)
 - 🧠 Database Management (MySQL on RDS)
 - 🧩 Multi-tier Architecture Design
-```
+
 
 ## 👤 Author
 
