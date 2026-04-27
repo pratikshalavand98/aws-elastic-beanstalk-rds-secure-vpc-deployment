@@ -49,7 +49,12 @@ To manage and test the private RDS database, a dedicated EC2 instance was launch
 ---
 
 ## 💻 Technical Implementation (SSH & Commands)
+### 🔐 SSH Connection
+SSH is used to securely connect to the EC2 instance from the local machine.
 
+```bash
+ssh -i path/keyname.pem ec2-user@public_ip
+```
 ### 🔧 1. System Setup & Dependencies
 
 ```bash
